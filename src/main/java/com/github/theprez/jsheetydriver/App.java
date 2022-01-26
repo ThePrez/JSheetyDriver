@@ -51,12 +51,12 @@ public class App {
             // s.execute("create table liam2 like \"Sheet1\"");
             // s.execute("create table liam3 as select * from DB2.LIAM");
             s.execute("sheety linkdb2 jesseg.qcustcdt");
-             s.execute("sheety load data.csv");
-             s.execute("drop table data.csv");
-//            s.execute("please load master.xlsx");
-//            s.execute("drop table master.juanma");
-//            s.execute("create table master.juanma as select * from DB2.QCUSTCDT where CDTDUE=0");
-             s.execute("sheety linkdb2as data.csv jesseg.qcustcdt");
+            s.execute("sheety load data.csv");
+            s.execute("drop table data.csv");
+            // s.execute("please load master.xlsx");
+            // s.execute("drop table master.juanma");
+            // s.execute("create table master.juanma as select * from DB2.QCUSTCDT where CDTDUE=0");
+            s.execute("sheety linkdb2as data.csv jesseg.qcustcdt");
 
             // s.execute("please db2query data.csv SELECT * FROM QSYS2.NETSTAT_INFO");
             // s.execute("insert into DB2.QCUSTCDT (select * from master.LIAM5)");

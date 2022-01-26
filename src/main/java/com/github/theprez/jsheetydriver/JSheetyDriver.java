@@ -70,7 +70,7 @@ public class JSheetyDriver implements Driver {
             if (isTurboMode) {
                 h2ConnectionString = "jdbc:h2:mem:jesse";
             } else {
-               File tmpFile = File.createTempFile("sheety.", ".db");
+                final File tmpFile = File.createTempFile("sheety.", ".db");
                 tmpFile.deleteOnExit();
                 h2ConnectionString = "jdbc:h2:" + tmpFile.getCanonicalPath();
             }
