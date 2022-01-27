@@ -1,4 +1,4 @@
-package com.github.theprez.jsheetydriver.marshalling;
+package com.github.theprez.jsheetydriver;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -14,9 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.github.theprez.jsheetydriver.SheetyJDBCConnection;
-
-public class CsvUnmarshallingService implements H2UnmarshallingService {
+class CsvUnmarshallingService implements H2UnmarshallingService {
 
     private static final int FILE_WRITE_BUFFER_SIZE = 1024 * 1024 * 2;
 

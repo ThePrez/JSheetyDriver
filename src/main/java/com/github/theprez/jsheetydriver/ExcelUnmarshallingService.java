@@ -1,4 +1,4 @@
-package com.github.theprez.jsheetydriver.marshalling;
+package com.github.theprez.jsheetydriver;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -18,9 +18,7 @@ import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
-import com.github.theprez.jsheetydriver.SheetyJDBCConnection;
-
-public class ExcelUnmarshallingService implements H2UnmarshallingService {
+class ExcelUnmarshallingService implements H2UnmarshallingService {
 
     private static final int FILE_WRITE_BUFFER_SIZE = 1024 * 1024 * 64;
 

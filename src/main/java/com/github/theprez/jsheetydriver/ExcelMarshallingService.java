@@ -1,4 +1,4 @@
-package com.github.theprez.jsheetydriver.marshalling;
+package com.github.theprez.jsheetydriver;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import com.monitorjbl.xlsx.StreamingReader;
 
-public class ExcelMarshallingService implements H2MarshallingService {
+class ExcelMarshallingService implements H2MarshallingService {
 
     private static final int FILE_READ_BUFFER_SIZE = 1024 * 1024 * 64;
 

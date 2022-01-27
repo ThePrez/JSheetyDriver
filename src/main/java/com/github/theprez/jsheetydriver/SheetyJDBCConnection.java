@@ -10,12 +10,7 @@ import java.util.List;
 
 import org.h2.jdbc.JdbcConnection;
 
-import com.github.theprez.jsheetydriver.marshalling.CsvMarshallingService;
-import com.github.theprez.jsheetydriver.marshalling.CsvUnmarshallingService;
-import com.github.theprez.jsheetydriver.marshalling.ExcelMarshallingService;
-import com.github.theprez.jsheetydriver.marshalling.ExcelUnmarshallingService;
-
-public class SheetyJDBCConnection extends JdbcConnection {
+class SheetyJDBCConnection extends JdbcConnection {
 
     private final CsvMarshallingService m_csvMarshall = new CsvMarshallingService();
     private final CsvUnmarshallingService m_csvUnmarshall = new CsvUnmarshallingService();

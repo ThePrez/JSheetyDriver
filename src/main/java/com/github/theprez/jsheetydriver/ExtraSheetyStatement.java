@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 import com.github.theprez.jcmdutils.StringUtils;
 
-public class ExtraSheetyStatement {
+class ExtraSheetyStatement {
 
     private final String m_sql;
     private final Statement m_stmt;

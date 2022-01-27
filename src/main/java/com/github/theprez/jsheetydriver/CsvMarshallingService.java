@@ -1,4 +1,4 @@
-package com.github.theprez.jsheetydriver.marshalling;
+package com.github.theprez.jsheetydriver;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
 
-public class CsvMarshallingService implements H2MarshallingService {
+class CsvMarshallingService implements H2MarshallingService {
 
     private static final String s_stringDbType = getDbTypeName(String.class, "");
 
