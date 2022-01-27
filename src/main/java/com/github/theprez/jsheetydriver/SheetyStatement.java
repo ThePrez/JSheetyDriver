@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
 
-public class SheetyStatement implements Statement {
+class SheetyStatement implements Statement {
     Statement m_wrp;
 
     public SheetyStatement(final Statement _stmt) {
