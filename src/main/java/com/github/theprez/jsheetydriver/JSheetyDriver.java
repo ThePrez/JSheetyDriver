@@ -77,7 +77,7 @@ public class JSheetyDriver implements Driver {
             final JdbcConnection h2Conn = (JdbcConnection) m_driver.connect(h2ConnectionString, p);
             final SheetyJDBCConnection ret = new SheetyJDBCConnection(h2Conn, this);
 
-            final String filePath = url.replaceFirst("^(?i)sheety:", "").replaceAll(";.*", "");
+            final String filePath = url.replaceFirst("^(?i)sheety[:]{0,1}", "").replaceAll(";.*", "");
             if (StringUtils.isEmpty(filePath)) {
                 return ret;
             }
