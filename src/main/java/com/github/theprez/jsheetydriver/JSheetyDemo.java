@@ -12,6 +12,10 @@ import java.util.Properties;
 public class JSheetyDemo {
 
     public static void main(final String[] args) {
+        if (args.length == 0) {
+            System.err.println("Wrong number of args ... -h for help!");
+            System.exit(1);
+        }
         if (args[0].equals("-h")) {
             System.out.println("usage: JSheetyDemo targetSystem userId password schema table directory filename");
             System.exit(0);
