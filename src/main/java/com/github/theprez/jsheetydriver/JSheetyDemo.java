@@ -68,13 +68,14 @@ public class JSheetyDemo {
             s.execute("sheety cd " + directory);
             // s.execute("create table liam2 like \"Sheet1\"");
             // s.execute("create table liam3 as select * from DB2.LIAM");
-            s.execute("sheety linkdb2 " + qualifiedTable);
-            s.execute("sheety load " + filename);
+            s.execute("sheety open " + filename);
             s.execute("drop table " + filename);
+            // s.execute("sheety load " + filename);
+
             // s.execute("please load master.xlsx");
             // s.execute("drop table master.juanma");
             // s.execute("create table master.juanma as select * from DB2.QCUSTCDT where CDTDUE=0");
-            s.execute("sheety linkdb2as " + filename + " " + qualifiedTable);
+            s.execute("sheety linkdb2 " + qualifiedTable + " " + filename);
 
             // s.execute("please db2query data.csv SELECT * FROM QSYS2.NETSTAT_INFO");
             // s.execute("insert into DB2.QCUSTCDT (select * from master.LIAM5)");
