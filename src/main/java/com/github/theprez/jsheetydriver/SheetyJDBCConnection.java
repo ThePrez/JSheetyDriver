@@ -81,9 +81,19 @@ class SheetyJDBCConnection extends JdbcConnection {
             file = new File(m_currentDir, _file);
         }
         if (isExcelFile(file)) {
-            m_marshall.marshall(_stmt, file);
+            if (file.canRead()) {
+                m_marshall.marshall(_stmt, file);
+            }
+            else if(!_writable) {
+                throw new SQLException(new FileNotFoundException(file.getAbsolutePath()));
+            }
         } else if (isCsvFile(file)) {
-            m_csvMarshall.marshall(_stmt, file);
+            if (file.canRead()) {
+                m_csvMarshall.marshall(_stmt, file);
+            }
+            else if(!_writable) {
+                throw new SQLException(new FileNotFoundException(file.getAbsolutePath()));
+            }
         } else {
             throw new SQLException("Unsupported File Type");
         }

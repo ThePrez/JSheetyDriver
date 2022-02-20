@@ -131,9 +131,11 @@ class ExtraSheetyStatement {
         final String sys = conn.getDb2System();
         final String targetSchemaStringWithDot = StringUtils.isEmpty(targetSchema) ? "" : targetSchema + ".";
 
-        final String sql = String.format("CREATE LINKED TABLE %s%s('com.ibm.as400.access.AS400JDBCDriver','jdbc:as400://%s','%s','%s','%s','%s') EMIT UPDATES", targetSchemaStringWithDot, targetTable, sys, uid, new String(pw), sourceSchema, sourceTable);
+        final String dropSql = String.format("DROP TABLE IF EXISTS %s.%s", targetSchema, targetTable);
+        final String linkSql = String.format("CREATE LINKED TABLE %s%s('com.ibm.as400.access.AS400JDBCDriver','jdbc:as400://%s','%s','%s','%s','%s') EMIT UPDATES", targetSchemaStringWithDot, targetTable, sys, uid, new String(pw), sourceSchema, sourceTable);
         final Statement s = m_stmt.getConnection().createStatement();
-        s.execute(sql);
+        s.execute(dropSql);
+        s.execute(linkSql);
         s.close();
 
         return false;

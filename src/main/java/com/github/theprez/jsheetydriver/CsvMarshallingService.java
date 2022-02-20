@@ -84,7 +84,7 @@ class CsvMarshallingService implements H2MarshallingService {
     public void marshall(final Statement _stmt, final File _file) throws SQLException, FileNotFoundException, IOException {
 
         final String schema = _file.getName().replaceAll("\\..*", "").toUpperCase();// TODO: handle special characters and such
-        dbExecute(_stmt, "CREATE SCHEMA \"" + schema + "\"");
+        dbExecute(_stmt, "CREATE SCHEMA IF NOT EXISTS \"" + schema + "\"");
 
         final PreparedStatement ps = _stmt.getConnection().prepareStatement("select * from CSVREAD('" + _file.getAbsolutePath() + "')");
         // ps.setString(1, _file.getAbsolutePath());

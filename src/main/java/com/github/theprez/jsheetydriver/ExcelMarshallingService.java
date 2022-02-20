@@ -101,7 +101,7 @@ class ExcelMarshallingService implements H2MarshallingService {
     public void marshall(final Statement _stmt, final File _file) throws SQLException, FileNotFoundException, IOException {
 
         final String schema = _file.getName().replaceAll("\\..*", "").toUpperCase();// TODO: handle special characters and such
-        dbExecute(_stmt, "CREATE SCHEMA " + schema);
+        dbExecute(_stmt, "CREATE SCHEMA IF NOT EXISTS " + schema);
         if (m_schemaToFileMap.isEmpty()) {
             _stmt.getConnection().setSchema(schema);
         }

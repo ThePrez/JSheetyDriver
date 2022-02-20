@@ -44,9 +44,9 @@ class ExcelUnmarshallingService implements H2UnmarshallingService {
         return tablesStatementtatement.executeQuery("Show tables from \"" + _schema + "\"");
     }
 
-    private void populateSheet(final Connection _src, final SXSSFSheet _sheet, final String _table) throws SQLException {
+    private void populateSheet(final Connection _src, final SXSSFSheet _sheet, final String _schema, String _table) throws SQLException {
         final Statement statement = _src.createStatement();
-        final ResultSet rs = statement.executeQuery("select * from \"" + _src.getSchema() + "\".\"" + _table + "\"");
+        final ResultSet rs = statement.executeQuery("select * from \"" + _schema + "\".\"" + _table + "\"");
         final ResultSetMetaData metadata = rs.getMetaData();
         final int columnCount = metadata.getColumnCount();
         int rowNum = 0;
@@ -67,6 +67,9 @@ class ExcelUnmarshallingService implements H2UnmarshallingService {
     }
 
     private void setCellValue(final SXSSFCell _cell, final CellType _cellType, final ResultSet _rs, final int _column) throws SQLException {
+        if(null == _rs.getObject(_column)) {
+            return;
+        }
         switch (_cellType) {
             case BOOLEAN:
                 _cell.setCellType(CellType.BOOLEAN);
@@ -88,14 +91,15 @@ class ExcelUnmarshallingService implements H2UnmarshallingService {
         }
         try (final SXSSFWorkbook workbook = new SXSSFWorkbook()) {
             final Statement tablesStatementtatement = _src.createStatement();
-            final ResultSet tablesRs = getTableList(tablesStatementtatement, _src.getSchema());
+            final String schema = _dest.getName().replaceAll("\\..*", "").toUpperCase();
+            final ResultSet tablesRs = getTableList(tablesStatementtatement, schema);
             boolean isTableFound = false;
             while (tablesRs.next()) {
                 isTableFound = true;
                 final String table = tablesRs.getString(1);
                 System.out.println("Writing Excel sheet: " + table);
                 final SXSSFSheet sheet = workbook.createSheet(table);
-                populateSheet(_src, sheet, table);
+                populateSheet(_src, sheet, schema, table);
             }
             if (!isTableFound) {
                 return;
