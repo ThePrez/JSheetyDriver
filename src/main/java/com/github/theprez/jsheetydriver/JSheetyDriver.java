@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.Collections;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -45,10 +46,23 @@ public class JSheetyDriver implements Driver {
         }
         try {
             final Properties p = new Properties();
-            p.putAll(info);
+            for(Object prop :Collections.list(info.propertyNames())) {
+                if(prop instanceof CharSequence) {
+                    p.put(prop.toString().toUpperCase(), info.get(prop));
+                }else {
+                    p.put(prop, info.get(prop));
+                }
+            }
             final String propertiesFromConnectionString = url.contains(";") ? url.replaceFirst("^[^;]*;", "") : "";
-
-            p.load(new StringReader(propertiesFromConnectionString.replace(';', '\n')));
+            Properties connStringProps = new Properties();
+            connStringProps.load(new StringReader(propertiesFromConnectionString.replace(';', '\n')));
+            for(Object prop :Collections.list(connStringProps.propertyNames())) {
+                if(prop instanceof CharSequence) {
+                    p.put(prop.toString().toUpperCase(), connStringProps.get(prop));
+                }else {
+                    p.put(prop, connStringProps.get(prop));
+                }
+            }
 
             Object prop = p.remove("DB2PW");
             if (null != prop) {
@@ -64,7 +78,7 @@ public class JSheetyDriver implements Driver {
             }
 
             p.put("MODE", "DB2");
-            final boolean isTurboMode = Boolean.parseBoolean(p.getProperty("turbo"));
+            final boolean isTurboMode = Boolean.parseBoolean(p.getProperty("TURBO"));
             final String h2ConnectionString;
 
             if (isTurboMode) {
