@@ -1,13 +1,19 @@
 # Jesse's Sheety Driver (JSheetyDriver)
-A JDBC driver for interacting with CSV files and Excel Spreadsheets. It also comes with special
+
+Want to write a sheety application? Well, you've come to the right place, because do I have a 
+sheety driver for you! 
+
+This project provides a JDBC driver for interacting with CSV files and Excel Spreadsheets. It also comes with special
 integration for communicating with Db2 on IBM i. 
+
+That's pretty sheety!!
 
 Some of the features include:
 - The ability to easily load/query/manipulate .csv files
 - The ability to easily load/query/manipulate .xlsx (Excel) files
 
-This is still in bringup and not suitable for production use. Doc and testing forthcoming.
-
+This is still in bringup and not suitable for production use. More doc and testing forthcoming.
+Still, a highly sheety piece of software!
 
 # Getting Started
 
@@ -196,3 +202,6 @@ Yes!! Documentation forthcoming
 
 Documentation forthcoming
 
+# Using with Apache Camel
+
+Documentation forthcoming
