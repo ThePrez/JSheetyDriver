@@ -68,7 +68,8 @@ not exist, it may be created later.
 
 **After a file is loaded**
 SQL operations, such as INSERT, UPDATE, SELECT, can be performed on the tables in the SQL namespace. Advanced SQL is
-allowed (conditions, joins, etc etc etc). 
+allowed (conditions, joins, etc etc etc). You can create new tables (which can ultimately be written as a new
+spreadsheet), delete tables, etc.
 
 **When a commit happens**
 The files are written to disk. The contents of the file are determined by the contents of data in the SQL namespace.
