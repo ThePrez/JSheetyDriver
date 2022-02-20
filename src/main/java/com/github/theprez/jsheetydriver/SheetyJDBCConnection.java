@@ -51,7 +51,7 @@ class SheetyJDBCConnection extends JdbcConnection {
 
     @Override
     public Statement createStatement() throws SQLException {
-        return new SheetyStatement(super.createStatement());
+        return new SheetyStatement(super.createStatement(), this);
     }
 
     public JSheetyDriver getDriver() {
