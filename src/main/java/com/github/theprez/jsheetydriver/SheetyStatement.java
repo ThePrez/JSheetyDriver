@@ -7,10 +7,12 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 
 class SheetyStatement implements Statement {
-    Statement m_wrp;
+    private final Statement m_wrp;
+    private final SheetyJDBCConnection m_conn;
 
-    public SheetyStatement(final Statement _stmt) {
+    public SheetyStatement(final Statement _stmt, final SheetyJDBCConnection _conn) {
         m_wrp = _stmt;
+        m_conn = _conn;
     }
 
     @Override
@@ -47,7 +49,11 @@ class SheetyStatement implements Statement {
     public boolean execute(final String _sql) throws SQLException {
         final ExtraSheetyStatement please = getPleaseStmt(_sql);
         if (null == please) {
-            return m_wrp.execute(_sql);
+            boolean ret = m_wrp.execute(_sql);
+            if (_sql.trim().toLowerCase().equals("commit")) {
+                m_conn.writeToFile();
+            }
+            return ret;
         }
         return please.execute();
     }

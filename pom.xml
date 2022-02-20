@@ -3,7 +3,7 @@
 
   <groupId>io.github.theprez</groupId>
   <artifactId>jsheetydriver</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
   <name>Jesse's Sheety Driver</name>
   <description>A JDBC driver for reading and writing Excel (.xlsx) and CSV files</description>
   <url>https://github.com/ThePrez/JSheetyDriver</url>

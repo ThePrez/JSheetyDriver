@@ -105,7 +105,7 @@ class SheetyJDBCConnection extends JdbcConnection {
         m_isReadOnly = _readOnly;
     }
 
-    private void writeToFile() throws SQLException {
+    void writeToFile() throws SQLException {
         try {
             if (!m_isReadOnly) {
                 for (final File f : m_writableFiles) {
