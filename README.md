@@ -58,7 +58,7 @@ Specifying on connection string
 final Connection conn = DriverManager.getConnection("sheety:DB2SYSTEM=myibmi;DB2UID=myuser;DB2PW=mypw;turbo=true");
 ```         
 
-# Managing the SQL namespace (IMPORTANT!!)
+# Managing the data model (IMPORTANT)
 
 In order to use this driver most effectively, it is important to understand how the driver works.
 
@@ -74,6 +74,19 @@ spreadsheet), delete tables, etc.
 **When a commit happens**
 The files are written to disk. The contents of the file are determined by the contents of data in the SQL namespace.
 
+```mermaid
+sequenceDiagram
+    Spreadsheet File->>+Data Model: "Sheety load"
+    Data Model->>Data Model: Data Manipulation
+    Data Model->>+Db2: Db2 queries
+    Db2->>-Data Model: Db2 data
+    Spreadsheet File->>Data Model: "Sheety load"
+    Data Model->>+Db2: Db2 queries
+    Db2->>-Data Model: Db2 data
+    Data Model->>Data Model: Data Manipulation
+    Data Model->>-Spreadsheet File: Changes committed
+```
+
 ## Schema and Table Geometry
 
 ```mermaid
@@ -84,6 +97,8 @@ graph TD
     D --> E[Schema = file name]
     C --> E[Schema = file name]
 ```
+
+
 
 # Special Commands
 
@@ -162,4 +177,22 @@ sheety load_readonly myfile.csv;
 sheety load myfile.xlsx;
 commit;
 ```
+
+# Known limitations
+
+There are several known limitations when compared to other JDBC drivers, which include, but are not limited to:
+- Changes are only persisted to file when a commit is explicitly requested (either through the `COMMIT` SQL 
+directive or by invoking `close()` on the Connection object
+- There is no transaction isolation, even across Statement objects. Thus, a `COMMIT` from one open Statement
+may cause multiple files to be written, even if that work was done through different Statement objects. 
+- File names are expected to be "simple." Compatibility with special symbols and spaces in filenames is untested
+and therefore unknown.
+
+# Can I link to other databases?
+
+Yes!! Documentation forthcoming
+
+# Performance considerations
+
+Documentation forthcoming
 
