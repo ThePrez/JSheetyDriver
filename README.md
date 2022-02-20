@@ -82,18 +82,18 @@ The files are written to disk. The contents of the file are determined by the co
 
 ```mermaid
 sequenceDiagram
-    Spreadsheet File 1->>+Data Model: "Sheety load"
-    Data Model->>Data Model: Data Manipulation
-    Data Model->>+Db2: Db2 queries
-    Db2->>-Data Model: Db2 data
-    Spreadsheet File 2->>Data Model: "Sheety load"
-    Data Model->>+Db2: Db2 queries
-    Db2->>-Data Model: Db2 data
-    Data Model->>Data Model: Data Manipulation
+    Spreadsheet File 1->>+SQL Data Model: "Sheety load"
+    SQL Data Model->>SQL Data Model: Data Manipulation
+    SQL Data Model->>+Db2: Db2 queries
+    Db2->>-SQL Data Model: Db2 data
+    Spreadsheet File 2->>SQL Data Model: "Sheety load"
+    SQL Data Model->>+Db2: Db2 queries
+    Db2->>-SQL Data Model: Db2 data
+    SQL Data Model->>SQL Data Model: Data Manipulation
     par
-    Data Model->>Spreadsheet File 1: COMMIT. Writing file 1
+    SQL Data Model->>Spreadsheet File 1: COMMIT. Writing file 1
     and
-    Data Model->>-Spreadsheet File 2: COMMIT. Writing file 2
+    SQL Data Model->>-Spreadsheet File 2: COMMIT. Writing file 2
     end
 ```
 
