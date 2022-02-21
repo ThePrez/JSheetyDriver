@@ -35,7 +35,7 @@ public class JSheetyDriver implements Driver {
 
     @Override
     public boolean acceptsURL(final String url) throws SQLException {
-        final boolean isMyURL = url.matches("^(?i)(sheety)($|:.*$)");
+        final boolean isMyURL = url.matches("^(?i)(sheety)($|[;:].*$)");
         return isMyURL;
     }
 
