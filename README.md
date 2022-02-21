@@ -61,7 +61,7 @@ final Connection conn = DriverManager.getConnection("sheety", p);
 Specifying on connection string
 
 ```java
-final Connection conn = DriverManager.getConnection("sheety:DB2SYSTEM=myibmi;DB2UID=myuser;DB2PW=mypw;turbo=true");
+final Connection conn = DriverManager.getConnection("sheety;DB2SYSTEM=myibmi;DB2UID=myuser;DB2PW=mypw;turbo=true");
 ```         
 
 # Managing the data model (IMPORTANT)
