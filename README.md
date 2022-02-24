@@ -209,3 +209,7 @@ Documentation forthcoming
 # Using with Apache Camel
 
 Documentation forthcoming
+
+# Reviews
+_"This is some very sheety software, indeed!"_
+    -- [Jack Woehr](https://github.com/jwoehr)
